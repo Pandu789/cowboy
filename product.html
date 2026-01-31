@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Spark - Cowboy E-Bike Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* --- GLOBAL STYLES (Sama dengan Index) --- */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-black {
+            background-color: #000;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 24px;
+            border: 2px solid #000;
+            transition: all 0.3s;
+        }
+
+        .btn-black:hover {
+            background-color: transparent;
+            color: #000;
+        }
+
+        /* --- PRODUCT PAGE SPECIFIC STYLES --- */
+
+        /* Layout Grid */
+        .product-gallery img {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            background-color: #ececec;
+            /* Placeholder bg */
+        }
+
+        /* Sticky Sidebar (Panel Kanan) */
+        .product-details-sticky {
+            position: sticky;
+            top: 100px;
+            /* Jarak dari atas saat scroll */
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Color Radio Custom */
+        .btn-check:checked+.btn-color {
+            border-color: #000;
+            transform: scale(1.1);
+        }
+
+        .btn-color {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        /* Specs Table */
+        .specs-table td {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .specs-label {
+            font-weight: 600;
+            color: #888;
+            width: 40%;
+        }
+
+        /* Accordion Custom */
+        .accordion-button:not(.collapsed) {
+            background-color: transparent;
+            color: #000;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0, 0, 0, .125);
+        }
+
+        /* Footer minimalis */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">COWBOY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Journal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-lg-none mt-3 text-center">
+                    <a href="#" class="btn btn-sm btn-outline-dark rounded-pill w-100">
+                        Cart (0)
+                    </a>
+                </div>
+            </div>
+            <div class="d-none d-lg-block">
+                <a href="#" class="btn btn-sm btn-outline-dark rounded-pill position-relative">
+                    <i class="bi bi-bag"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-7 product-gallery">
+                <img src="img/cowboy_bike_front_angled_1769854729093.png" alt="Main View">
+
+                <div class="row">
+                    <div class="col-6">
+                        <img src="img/bike_handlebar_detail_1769854685446.png" alt="Detail 1">
+                    </div>
+                    <div class="col-6">
+                        <img src="img/cowboy_bike_battery_detail_1769854713437.png" alt="Detail 2">
+                    </div>
+                </div>
+
+                <img src="img/urban_lifestyle_rider_1769854668570.png" alt="Lifestyle" class="mt-2">
+
+                <div class="mt-5">
+                    <h3 class="mb-4">Technical Specifications</h3>
+                    <table class="table specs-table">
+                        <tbody>
+                            <tr>
+                                <td class="specs-label">Weight</td>
+                                <td>18.2 kg (including battery)</td>
+                            </tr>
+                            <tr>
+                                <td class="specs-label">Range</td>
+                                <td>Up to 70 km autonomy</td>
+                            </tr>
+                            <tr>
+                                <td class="specs-label">Charging Time</td>
+                                <td>3.5 hours (100%)</td>
+                            </tr>
+                            <tr>
+                                <td class="specs-label">Brakes</td>
+                                <td>Hydraulic disc brakes</td>
+                            </tr>
+                            <tr>
+                                <td class="specs-label">Motor</td>
+                                <td>Custom 250W rear hub motor</td>
+                            </tr>
+                            <tr>
+                                <td class="specs-label">Tires</td>
+                                <td>Puncture-resistant custom tires</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="product-details-sticky">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <span class="badge bg-dark mb-2">NEW ARRIVAL</span>
+                            <h1 class="fw-bold">The Spark 4</h1>
+                            <p class="text-muted">Urban Performance E-Bike</p>
+                        </div>
+                        <div class="text-end">
+                            <h3 class="fw-bold">$2,499</h3>
+                            <small class="text-success"><i class="bi bi-check-circle-fill"></i> In Stock</small>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold d-block mb-2">Select Color: <span id="colorName">Matte
+                                Black</span></label>
+
+                        <input type="radio" class="btn-check" name="color" id="black" checked autocomplete="off">
+                        <label class="btn-color" for="black" style="background-color: #212529;"
+                            onclick="document.getElementById('colorName').innerText='Matte Black'"></label>
+
+                        <input type="radio" class="btn-check" name="color" id="sand" autocomplete="off">
+                        <label class="btn-color" for="sand" style="background-color: #d2b48c;"
+                            onclick="document.getElementById('colorName').innerText='Sand'"></label>
+
+                        <input type="radio" class="btn-check" name="color" id="grey" autocomplete="off">
+                        <label class="btn-color" for="grey" style="background-color: #adb5bd;"
+                            onclick="document.getElementById('colorName').innerText='Cloud Grey'"></label>
+                    </div>
+
+                    <div class="row g-2 mb-4 text-center">
+                        <div class="col-4">
+                            <div class="border rounded p-2 bg-light">
+                                <i class="bi bi-lightning-charge mb-1 d-block"></i>
+                                <small class="fw-bold">70 km</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="border rounded p-2 bg-light">
+                                <i class="bi bi-speedometer mb-1 d-block"></i>
+                                <small class="fw-bold">25 km/h</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="border rounded p-2 bg-light">
+                                <i class="bi bi-box-seam mb-1 d-block"></i>
+                                <small class="fw-bold">18 kg</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-black btn-lg">Add to Cart - $2,499</button>
+                        <button class="btn btn-outline-secondary">Book a Test Ride</button>
+                    </div>
+
+                    <p class="text-center mt-3 text-muted small">
+                        <i class="bi bi-truck"></i> Free shipping within 3-5 days
+                    </p>
+
+                    <div class="accordion mt-4" id="productAccordion">
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed px-0 fw-bold" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Description
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse"
+                                data-bs-parent="#productAccordion">
+                                <div class="accordion-body px-0 text-muted small">
+                                    The Spark 4 is designed for the city. It features our most powerful motor yet,
+                                    adaptive power technology, and a built-in wireless charger for your phone.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 border-bottom">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed px-0 fw-bold" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Warranty & Returns
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#productAccordion">
+                                <div class="accordion-body px-0 text-muted small">
+                                    2-year comprehensive warranty on all components. 30-day free return policy if the
+                                    bike hasn't been ridden more than 10km.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-5">
+        <div class="container">
+            <h4 class="mb-4 fw-bold">Essential Accessories</h4>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card border-0 h-100">
+                        <img src="img/bike_helmet_minimalist_1769854899119.png" class="card-img-top rounded" alt="...">
+                        <div class="card-body px-0">
+                            <h6 class="card-title">Urban Helmet</h6>
+                            <p class="card-text text-muted">$89</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card border-0 h-100">
+                        <img src="img/cowboy_bike_battery_detail_1769854713437.png" class="card-img-top rounded"
+                            alt="...">
+                        <div class="card-body px-0">
+                            <h6 class="card-title">Security Lock</h6>
+                            <p class="card-text text-muted">$45</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card border-0 h-100">
+                        <img src="img/bike_handlebar_detail_1769854685446.png" class="card-img-top rounded" alt="...">
+                        <div class="card-body px-0">
+                            <h6 class="card-title">Rear Rack</h6>
+                            <p class="card-text text-muted">$120</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card border-0 h-100">
+                        <img src="img/cowboy_bike_step_through_1769854842516.png" class="card-img-top rounded"
+                            alt="...">
+                        <div class="card-body px-0">
+                            <h6 class="card-title">Kickstand</h6>
+                            <p class="card-text text-muted">$25</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="fw-bold mb-4">COWBOY</h4>
+                    <p class="text-white-50 small" style="max-width: 300px;">
+                        The connected electric bike for urban riders. Designed for performance, safety, and a silent
+                        ride.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Explore</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white-50 text-decoration-none">Products</a></li>
+                        <li><a href="blog.html" class="text-white-50 text-decoration-none">Journal</a></li>
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Support</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Newsletter</h6>
+                    <form onsubmit="event.preventDefault()">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control bg-dark border-secondary text-white small"
+                                placeholder="Your email">
+                            <button class="btn btn-light" type="submit"><i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <small class="text-white-50" style="font-size: 0.75rem;">Join our community. Unsubscribe
+                            anytime.</small>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-5">
+            <div class="row small text-white-50">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    &copy; 2026 Cowboy E-Bike Clone. All rights reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Privacy</a>
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Terms</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

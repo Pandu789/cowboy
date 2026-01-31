@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collection - Cowboy E-Bike Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Navbar & Button Styles (Konsisten) */
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-black {
+            background-color: #000;
+            color: #fff;
+            border-radius: 50px;
+            padding: 8px 24px;
+            transition: all 0.3s;
+        }
+
+        .btn-black:hover {
+            background-color: #333;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-black {
+            border: 1px solid #000;
+            color: #000;
+            border-radius: 50px;
+            padding: 8px 24px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-black:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* --- CATALOG SPECIFIC STYLES --- */
+
+        /* Header */
+        .page-header {
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background-color: #f8f9fa;
+        }
+
+        /* Filter Tabs */
+        .nav-pills .nav-link {
+            color: #888;
+            background: transparent;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 30px;
+        }
+
+        .nav-pills .nav-link.active {
+            color: #000;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Product Card */
+        .product-card {
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            /* Latar kartu abu-abu muda */
+            border-radius: 12px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-img-wrapper {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .card-img-wrapper img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            /* Agar background gambar menyatu jika putih */
+        }
+
+        .badge-new {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #000;
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        /* Color Swatches on Card */
+        .card-colors {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .swatch {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Accessories Section */
+        .accessory-card {
+            background: #fff;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 fixed-top border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">COWBOY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Journal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-lg-none mt-3 text-center">
+                    <a href="#" class="btn btn-sm btn-black rounded-pill w-100">Cart (0)</a>
+                </div>
+            </div>
+            <div class="d-none d-lg-block">
+                <a href="#" class="btn btn-sm btn-black rounded-pill">Cart (0)</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header text-center mt-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">OUR COLLECTION</h1>
+            <p class="text-muted mb-5" style="max-width: 600px; margin: 0 auto;">
+                Designed for urban riders. Whether you want comfort, speed, or versatility, we have the perfect ride for
+                you.
+            </p>
+
+            <ul class="nav nav-pills justify-content-center mb-0" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all"
+                        type="button">All Bikes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-cruiser-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-cruiser" type="button">Cruiser</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-sport-tab" data-bs-toggle="pill" data-bs-target="#pills-sport"
+                        type="button">Sport</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="container py-5">
+        <div class="row g-4">
+
+            <div class="col-lg-6 col-md-6">
+                <div class="product-card h-100 p-4 text-center">
+                    <span class="badge-new">BEST SELLER</span>
+                    <div class="card-img-wrapper">
+                        <a href="product.html">
+                            <img src="img/cowboy_bike_step_through_1769854842516.png" alt="Bike 1">
+                        </a>
+                    </div>
+                    <div class="card-body mt-3">
+                        <h3 class="fw-bold mb-1">Cruiser ST</h3>
+                        <p class="text-muted small">Step-through frame for upright comfort.</p>
+
+                        <div class="card-colors mb-3">
+                            <span class="swatch" style="background-color: #333;"></span>
+                            <span class="swatch" style="background-color: #d2b48c;"></span>
+                            <span class="swatch" style="background-color: #e0e0e0;"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+                            <span class="fw-bold fs-5">$2,499</span>
+                            <a href="product.html" class="btn btn-black btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <div class="product-card h-100 p-4 text-center">
+                    <div class="card-img-wrapper">
+                        <a href="product.html">
+                            <img src="img/cowboy_bike_hero_1769854649438.png" alt="Bike 2">
+                        </a>
+                    </div>
+                    <div class="card-body mt-3">
+                        <h3 class="fw-bold mb-1">Classic 4</h3>
+                        <p class="text-muted small">Agile and sporty for the fast commuter.</p>
+
+                        <div class="card-colors mb-3">
+                            <span class="swatch" style="background-color: #000;"></span>
+                            <span class="swatch" style="background-color: #556b2f;"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+                            <span class="fw-bold fs-5">$2,299</span>
+                            <a href="product.html" class="btn btn-outline-black btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card h-100 p-4 text-center bg-white border">
+                    <span class="badge-new bg-danger">NEW</span>
+                    <div class="card-img-wrapper bg-white">
+                        <a href="product.html">
+                            <img src="img/cowboy_bike_cross_1769854805004.png" alt="Bike 3">
+                        </a>
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="fw-bold">Cross</h4>
+                        <p class="text-muted small">Rugged tires for all terrain.</p>
+                        <h5 class="fw-bold mb-3">$2,990</h5>
+                        <a href="product.html" class="btn btn-link text-dark text-decoration-none">Learn More <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card h-100 p-4 text-center bg-white border">
+                    <div class="card-img-wrapper bg-white">
+                        <a href="product.html">
+                            <img src="img/cowboy_bike_sand_color_1769854769087.png" alt="Bike 4">
+                        </a>
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="fw-bold">Circular</h4>
+                        <p class="text-muted small">Refurbished bikes, good as new.</p>
+                        <h5 class="fw-bold mb-3">From $1,800</h5>
+                        <a href="product.html" class="btn btn-link text-dark text-decoration-none">See Available <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card h-100 p-4 text-center bg-white border">
+                    <div class="card-img-wrapper bg-white">
+                        <a href="product.html">
+                            <img src="img/cowboy_bike_front_angled_1769854729093.png" alt="Bike 5">
+                        </a>
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="fw-bold">Classic Lite</h4>
+                        <p class="text-muted small">The essentials. Nothing more.</p>
+                        <h5 class="fw-bold mb-3">$1,999</h5>
+                        <a href="product.html" class="btn btn-link text-dark text-decoration-none">Learn More <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold">RIDING ESSENTIALS</h3>
+                <a href="#" class="text-muted text-decoration-none">View All Accessories <i
+                        class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-3 col-6">
+                    <div class="accessory-card p-3 rounded text-center h-100">
+                        <img src="img/bike_helmet_minimalist_1769854899119.png" class="img-fluid mb-2">
+                        <h6 class="fw-bold">Helmet</h6>
+                        <small class="text-muted">$80</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="accessory-card p-3 rounded text-center h-100">
+                        <img src="img/bike_handlebar_detail_1769854685446.png" class="img-fluid mb-2">
+                        <h6 class="fw-bold">Quad Lock</h6>
+                        <small class="text-muted">$40</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="accessory-card p-3 rounded text-center h-100">
+                        <img src="img/cowboy_bike_battery_detail_1769854713437.png" class="img-fluid mb-2">
+                        <h6 class="fw-bold">Child Seat</h6>
+                        <small class="text-muted">$150</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div
+                        class="accessory-card p-3 rounded text-center h-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center">
+                        <h5>Explore<br>Accessories</h5>
+                        <i class="bi bi-arrow-right-circle fs-3 mt-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="fw-bold mb-4">COWBOY</h4>
+                    <p class="text-white-50 small" style="max-width: 300px;">
+                        The connected electric bike for urban riders. Designed for performance, safety, and a silent
+                        ride.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Explore</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white-50 text-decoration-none">Products</a></li>
+                        <li><a href="blog.html" class="text-white-50 text-decoration-none">Journal</a></li>
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Support</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Newsletter</h6>
+                    <form onsubmit="event.preventDefault()">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control bg-dark border-secondary text-white small"
+                                placeholder="Your email">
+                            <button class="btn btn-light" type="submit"><i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <small class="text-white-50" style="font-size: 0.75rem;">Join our community. Unsubscribe
+                            anytime.</small>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-5">
+            <div class="row small text-white-50">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    &copy; 2026 Cowboy E-Bike Clone. All rights reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Privacy</a>
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Terms</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

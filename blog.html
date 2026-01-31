@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal - Cowboy E-Bike Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar (Konsisten) */
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-black {
+            background-color: #000;
+            color: #fff;
+            border-radius: 50px;
+            padding: 8px 24px;
+            transition: all 0.3s;
+        }
+
+        .btn-black:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* --- BLOG SPECIFIC STYLES --- */
+
+        .blog-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        /* Featured Article Card (Artikel Utama) */
+        .card-featured {
+            border: none;
+            overflow: hidden;
+            border-radius: 12px;
+            position: relative;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .card-featured img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-featured:hover img {
+            transform: scale(1.03);
+            /* Zoom effect saat hover */
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+
+        /* Standard Article Card */
+        .card-article {
+            border: none;
+            background: transparent;
+            margin-bottom: 30px;
+        }
+
+        .card-article img {
+            border-radius: 8px;
+            margin-bottom: 15px;
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .card-article:hover img {
+            opacity: 0.8;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .article-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.2s;
+        }
+
+        .article-title a:hover {
+            color: #555;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background-color: #fff;
+            padding: 80px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .form-control-pill {
+            border-radius: 50px;
+            padding: 12px 20px;
+            background-color: #f4f4f4;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">COWBOY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Journal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-lg-none mt-3 text-center">
+                    <a href="#" class="btn btn-black btn-sm w-100">Subscribe</a>
+                </div>
+            </div>
+            <div class="d-none d-lg-block">
+                <a href="#" class="btn btn-black btn-sm">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">THE RIDE JOURNAL</h1>
+            <p class="text-muted">Stories about urban mobility, technology, and the people who ride.</p>
+
+            <div class="mt-4 d-flex justify-content-center gap-3">
+                <a href="#" class="btn btn-sm btn-dark rounded-pill px-3">All Stories</a>
+                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Technology</a>
+                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Lifestyle</a>
+                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Community</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
+
+        <div class="card-featured shadow-sm">
+            <a href="#">
+                <img src="img/tech_circuit_diagram_1769854884598.png" alt="Featured">
+                <div class="featured-overlay">
+                    <span class="badge bg-white text-dark mb-2">TECHNOLOGY</span>
+                    <h2 class="display-6 fw-bold">Why the Future of Cities is Silent and Electric</h2>
+                    <p class="mb-0 text-white-50">By Adrien Roose &bull; 5 min read</p>
+                </div>
+            </a>
+        </div>
+
+        <h4 class="fw-bold mb-4">Latest Stories</h4>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card-article">
+                    <a href="#">
+                        <img src="img/urban_lifestyle_rider_1769854668570.png" alt="Thumb">
+                    </a>
+                    <span class="category-tag">COMMUNITY</span>
+                    <h3 class="article-title"><a href="#">Meet Sarah: Navigating Berlin on Two Wheels</a></h3>
+                    <p class="text-muted small mb-2">How one graphic designer changed her daily commute and never looked
+                        back.</p>
+                    <div class="article-meta">Oct 24, 2024 &bull; 3 min read</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-article">
+                    <a href="#">
+                        <img src="img/bike_handlebar_detail_1769854685446.png" alt="Thumb">
+                    </a>
+                    <span class="category-tag">UPDATE</span>
+                    <h3 class="article-title"><a href="#">Introducing AdaptivePower™ Technology</a></h3>
+                    <p class="text-muted small mb-2">A deep dive into our newest motor controller software that feels
+                        the road.</p>
+                    <div class="article-meta">Oct 10, 2024 &bull; 6 min read</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-article">
+                    <a href="#">
+                        <img src="img/minimalist_city_map_1769854788555.png" alt="Thumb">
+                    </a>
+                    <span class="category-tag">LIFESTYLE</span>
+                    <h3 class="article-title"><a href="#">5 Hidden Coffee Spots in Amsterdam</a></h3>
+                    <p class="text-muted small mb-2">Accessible only by bike, these gems are worth the ride.</p>
+                    <div class="article-meta">Sep 28, 2024 &bull; 4 min read</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-article">
+                    <a href="#">
+                        <img src="img/wide_city_lifestyle_1769854866721.png" alt="Thumb">
+                    </a>
+                    <span class="category-tag">SUSTAINABILITY</span>
+                    <h3 class="article-title"><a href="#">Our Path to Net Zero Emissions</a></h3>
+                    <p class="text-muted small mb-2">Transparency report on our supply chain and manufacturing process.
+                    </p>
+                    <div class="article-meta">Sep 15, 2024 &bull; 8 min read</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-article">
+                    <a href="#">
+                        <img src="img/cowboy_bike_battery_detail_1769854713437.png" alt="Thumb">
+                    </a>
+                    <span class="category-tag">TIPS & TRICKS</span>
+                    <h3 class="article-title"><a href="#">Winter Care: Keeping Your Battery Healthy</a></h3>
+                    <p class="text-muted small mb-2">Essential tips for riding and storing your e-bike during the cold
+                        months.</p>
+                    <div class="article-meta">Aug 30, 2024 &bull; 2 min read</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div
+                    class="card-article bg-light p-4 rounded h-100 d-flex flex-column justify-content-center text-center">
+                    <i class="bi bi-envelope-paper h1 mb-3"></i>
+                    <h3 class="article-title">Have a story to tell?</h3>
+                    <p class="text-muted small">We love hearing from our riders. Submit your story and get featured.</p>
+                    <a href="#" class="btn btn-outline-dark btn-sm rounded-pill mt-2 w-50 mx-auto">Submit Story</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="newsletter-section text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h3 class="fw-bold mb-3">Don't miss a beat.</h3>
+                    <p class="text-muted mb-4">Get the latest news, stories, and exclusive offers delivered to your
+                        inbox.</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-pill"
+                            placeholder="Enter your email address">
+                        <button type="submit" class="btn btn-black rounded-pill px-4">Subscribe</button>
+                    </form>
+                    <small class="text-muted mt-3 d-block" style="font-size: 0.7rem;">By subscribing you agree to our
+                        Privacy Policy.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="fw-bold mb-4">COWBOY</h4>
+                    <p class="text-white-50 small" style="max-width: 300px;">
+                        The connected electric bike for urban riders. Designed for performance, safety, and a silent
+                        ride.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Explore</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="products.html" class="text-white-50 text-decoration-none">Products</a></li>
+                        <li><a href="blog.html" class="text-white-50 text-decoration-none">Journal</a></li>
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Support</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="text-white fw-bold text-uppercase mb-3 small opacity-75">Newsletter</h6>
+                    <form onsubmit="event.preventDefault()">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control bg-dark border-secondary text-white small"
+                                placeholder="Your email">
+                            <button class="btn btn-light" type="submit"><i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <small class="text-white-50" style="font-size: 0.75rem;">Join our community. Unsubscribe
+                            anytime.</small>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-5">
+            <div class="row small text-white-50">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    &copy; 2026 Cowboy E-Bike Clone. All rights reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Privacy</a>
+                    <a href="#" class="text-white-50 text-decoration-none me-4">Terms</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
