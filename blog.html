@@ -173,19 +173,23 @@
             <h1 class="display-4 fw-bold">THE RIDE JOURNAL</h1>
             <p class="text-muted">Stories about urban mobility, technology, and the people who ride.</p>
 
-            <div class="mt-4 d-flex justify-content-center gap-3">
-                <a href="#" class="btn btn-sm btn-dark rounded-pill px-3">All Stories</a>
-                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Technology</a>
-                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Lifestyle</a>
-                <a href="#" class="btn btn-sm btn-light rounded-pill px-3 border">Community</a>
+            <div class="mt-4 d-flex justify-content-center gap-3" id="categoryFilter">
+                <button class="btn btn-sm btn-dark rounded-pill px-3 filter-btn active" data-filter="all">All
+                    Stories</button>
+                <button class="btn btn-sm btn-light rounded-pill px-3 border filter-btn"
+                    data-filter="technology">Technology</button>
+                <button class="btn btn-sm btn-light rounded-pill px-3 border filter-btn"
+                    data-filter="lifestyle">Lifestyle</button>
+                <button class="btn btn-sm btn-light rounded-pill px-3 border filter-btn"
+                    data-filter="community">Community</button>
             </div>
         </div>
     </header>
 
     <section class="container">
 
-        <div class="card-featured shadow-sm">
-            <a href="#">
+        <div class="card-featured shadow-sm blog-item" data-category="technology">
+            <a href="article.html">
                 <img src="img/tech_circuit_diagram_1769854884598.png" alt="Featured">
                 <div class="featured-overlay">
                     <span class="badge bg-white text-dark mb-2">TECHNOLOGY</span>
@@ -196,66 +200,67 @@
         </div>
 
         <h4 class="fw-bold mb-4">Latest Stories</h4>
-        <div class="row">
+        <div class="row" id="blogGrid">
 
-            <div class="col-md-4">
+            <div class="col-md-4 blog-item" data-category="community">
                 <div class="card-article">
-                    <a href="#">
+                    <a href="article.html">
                         <img src="img/urban_lifestyle_rider_1769854668570.png" alt="Thumb">
                     </a>
                     <span class="category-tag">COMMUNITY</span>
-                    <h3 class="article-title"><a href="#">Meet Sarah: Navigating Berlin on Two Wheels</a></h3>
+                    <h3 class="article-title"><a href="article.html">Meet Sarah: Navigating Berlin on Two Wheels</a>
+                    </h3>
                     <p class="text-muted small mb-2">How one graphic designer changed her daily commute and never looked
                         back.</p>
                     <div class="article-meta">Oct 24, 2024 &bull; 3 min read</div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 blog-item" data-category="technology">
                 <div class="card-article">
-                    <a href="#">
+                    <a href="article.html">
                         <img src="img/bike_handlebar_detail_1769854685446.png" alt="Thumb">
                     </a>
                     <span class="category-tag">UPDATE</span>
-                    <h3 class="article-title"><a href="#">Introducing AdaptivePower™ Technology</a></h3>
+                    <h3 class="article-title"><a href="article.html">Introducing AdaptivePower™ Technology</a></h3>
                     <p class="text-muted small mb-2">A deep dive into our newest motor controller software that feels
                         the road.</p>
                     <div class="article-meta">Oct 10, 2024 &bull; 6 min read</div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 blog-item" data-category="lifestyle">
                 <div class="card-article">
-                    <a href="#">
+                    <a href="article.html">
                         <img src="img/minimalist_city_map_1769854788555.png" alt="Thumb">
                     </a>
                     <span class="category-tag">LIFESTYLE</span>
-                    <h3 class="article-title"><a href="#">5 Hidden Coffee Spots in Amsterdam</a></h3>
+                    <h3 class="article-title"><a href="article.html">5 Hidden Coffee Spots in Amsterdam</a></h3>
                     <p class="text-muted small mb-2">Accessible only by bike, these gems are worth the ride.</p>
                     <div class="article-meta">Sep 28, 2024 &bull; 4 min read</div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 blog-item" data-category="lifestyle">
                 <div class="card-article">
-                    <a href="#">
+                    <a href="article.html">
                         <img src="img/wide_city_lifestyle_1769854866721.png" alt="Thumb">
                     </a>
                     <span class="category-tag">SUSTAINABILITY</span>
-                    <h3 class="article-title"><a href="#">Our Path to Net Zero Emissions</a></h3>
+                    <h3 class="article-title"><a href="article.html">Our Path to Net Zero Emissions</a></h3>
                     <p class="text-muted small mb-2">Transparency report on our supply chain and manufacturing process.
                     </p>
                     <div class="article-meta">Sep 15, 2024 &bull; 8 min read</div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 blog-item" data-category="technology">
                 <div class="card-article">
-                    <a href="#">
+                    <a href="article.html">
                         <img src="img/cowboy_bike_battery_detail_1769854713437.png" alt="Thumb">
                     </a>
                     <span class="category-tag">TIPS & TRICKS</span>
-                    <h3 class="article-title"><a href="#">Winter Care: Keeping Your Battery Healthy</a></h3>
+                    <h3 class="article-title"><a href="article.html">Winter Care: Keeping Your Battery Healthy</a></h3>
                     <p class="text-muted small mb-2">Essential tips for riding and storing your e-bike during the cold
                         months.</p>
                     <div class="article-meta">Aug 30, 2024 &bull; 2 min read</div>
@@ -356,6 +361,50 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Category Filter Functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                // Update button styles
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('btn-dark', 'active');
+                    btn.classList.add('btn-light', 'border');
+                });
+                this.classList.remove('btn-light', 'border');
+                this.classList.add('btn-dark', 'active');
+
+                const filter = this.getAttribute('data-filter');
+                const items = document.querySelectorAll('.blog-item');
+
+                items.forEach(item => {
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.3s ease';
+                    } else if (item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.3s ease';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </body>
 
 </html>
